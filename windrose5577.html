@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - WINDROSE TOURS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="windrose_logo.png" alt="WINDROSE TOURS" class="logo-image">
+                </div>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav class="nav-menu" id="navMenu">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="login.html" class="logout-btn" title="Logout"><i class="fas fa-sign-out-alt"></i></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admin Dashboard -->
+    <section class="admin-section">
+        <div class="container">
+            <h1 class="page-title">Admin Dashboard</h1>
+            
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon unread">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="unreadBookingsCount">0</h3>
+                        <p>Unread Bookings</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon unread">
+                        <i class="fas fa-question"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="unreadQueriesCount">0</h3>
+                        <p>Unread Queries</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon total">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalBookingsCount">0</h3>
+                        <p>Total Bookings</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon total">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalQueriesCount">0</h3>
+                        <p>Total Queries</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service Cards Management Section -->
+            <section class="service-management-section">
+                <div class="dashboard-card service-management-card">
+                    <div class="dashboard-header">
+                        <div class="dashboard-header-left">
+                            <h2><i class="fas fa-images"></i> Service Cards Management</h2>
+                            <p class="section-description">Manage your service cards displayed on the home page carousel</p>
+                        </div>
+                    </div>
+                    <div class="dashboard-content">
+                        <div class="service-crud-header">
+                            <button class="add-service-btn" id="addServiceBtn">
+                                <i class="fas fa-plus"></i> Add New Service
+                            </button>
+                        </div>
+                        <div class="service-cards-list" id="serviceCardsList">
+                            <div class="empty-state">
+                                <i class="fas fa-images"></i>
+                                <p>No service cards yet. Add your first service card!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bookings and Queries Section -->
+            <section class="bookings-queries-section">
+                <h2 class="section-title-separator">Bookings & Queries</h2>
+                <div class="dashboard-grid">
+                <!-- Bookings Section -->
+                <div class="dashboard-card">
+                    <div class="dashboard-header">
+                        <div class="dashboard-header-left">
+                            <h2><i class="fas fa-calendar-check"></i> Trip Bookings</h2>
+                            <div class="dashboard-tabs">
+                                <button class="tab-btn active" data-tab="bookings-unread">Unread <span class="badge" id="unreadBookingsBadge">0</span></button>
+                                <button class="tab-btn" data-tab="bookings-read">Read <span class="badge" id="readBookingsBadge">0</span></button>
+                            </div>
+                        </div>
+                        <span class="badge total-badge" id="bookingCount">0</span>
+                    </div>
+                    <div class="dashboard-content" id="bookingsContainer">
+                        <div class="tab-content-wrapper">
+                            <div class="tab-content active" id="bookings-unread">
+                                <div class="empty-state">
+                                    <i class="fas fa-inbox"></i>
+                                    <p>No unread bookings</p>
+                                </div>
+                            </div>
+                            <div class="tab-content" id="bookings-read">
+                                <div class="empty-state">
+                                    <i class="fas fa-check-circle"></i>
+                                    <p>No read bookings</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Queries Section -->
+                <div class="dashboard-card">
+                    <div class="dashboard-header">
+                        <div class="dashboard-header-left">
+                            <h2><i class="fas fa-question-circle"></i> General Queries</h2>
+                            <div class="dashboard-tabs">
+                                <button class="tab-btn active" data-tab="queries-unread">Unread <span class="badge" id="unreadQueriesBadge">0</span></button>
+                                <button class="tab-btn" data-tab="queries-read">Read <span class="badge" id="readQueriesBadge">0</span></button>
+                            </div>
+                        </div>
+                        <span class="badge total-badge" id="queryCount">0</span>
+                    </div>
+                    <div class="dashboard-content" id="queriesContainer">
+                        <div class="tab-content-wrapper">
+                            <div class="tab-content active" id="queries-unread">
+                                <div class="empty-state">
+                                    <i class="fas fa-inbox"></i>
+                                    <p>No unread queries</p>
+                                </div>
+                            </div>
+                            <div class="tab-content" id="queries-read">
+                                <div class="empty-state">
+                                    <i class="fas fa-check-circle"></i>
+                                    <p>No read queries</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </section>
+        </div>
+    </section>
+
+    <!-- Service Card Modal -->
+    <div class="modal-overlay" id="serviceModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Add New Service</h3>
+                <button class="modal-close" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form class="service-form" id="serviceForm">
+                <input type="hidden" id="serviceId" name="serviceId">
+                <div class="form-group">
+                    <label for="serviceIcon">
+                        <i class="fas fa-icons"></i> Icon Class (Font Awesome)
+                    </label>
+                    <input type="text" id="serviceIcon" name="serviceIcon" placeholder="e.g., fas fa-graduation-cap" required>
+                </div>
+                <div class="form-group">
+                    <label for="serviceImage">
+                        <i class="fas fa-image"></i> Upload Image
+                    </label>
+                    <div class="image-upload-wrapper">
+                        <input type="file" id="serviceImage" name="serviceImage" accept="image/*" required>
+                        <label for="serviceImage" class="image-upload-label">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span class="upload-text">Choose Image</span>
+                            <span class="upload-hint">PNG, JPG up to 5MB</span>
+                        </label>
+                        <div class="image-preview" id="imagePreview" style="display: none;">
+                            <img id="previewImg" src="" alt="Preview">
+                            <button type="button" class="remove-image" id="removeImage">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="serviceDescription">
+                        <i class="fas fa-align-left"></i> Description
+                    </label>
+                    <textarea id="serviceDescription" name="serviceDescription" rows="3" placeholder="Short description of the service..." required></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="cancel-btn" id="cancelBtn">Cancel</button>
+                    <button type="submit" class="save-btn">Save Service</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+911234567890">+91 1234567890</a>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:info@windrosetours.com">info@windrosetours.com</a>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>123 Travel Street, Tourism City, India - 123456</span>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="https://instagram.com/windrosetours" target="_blank" aria-label="Instagram" class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://facebook.com/windrosetours" target="_blank" aria-label="Facebook" class="social-icon">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://wa.me/911234567890" target="_blank" aria-label="WhatsApp" class="social-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 WINDROSE TOURS. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
